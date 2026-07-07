@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background:        oklch(0.985 0.008 340);
+  --foreground:        oklch(0.22 0.06 295);
+  --card:              oklch(1 0 0);
+  --border:            oklch(0.88 0.04 300);
+  --muted:             oklch(0.96 0.02 340);
+  --muted-foreground:  oklch(0.48 0.06 300);
+  --secondary:         oklch(0.93 0.04 340);
+  --blush:             oklch(0.95 0.025 350);
+  --rose:              oklch(0.87 0.06 350);
+  --lavender:          oklch(0.78 0.10 305);
+  --violet-deep:       oklch(0.52 0.16 300);
+  --destructive:       oklch(0.6 0.22 27);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--violet-deep) 0%,
+      var(--lavender)    50%,
+      var(--rose)        100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-aurora {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, oklch(0.78 0.10 305 / 0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 80% 30%, oklch(0.87 0.06 350 / 0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 70% at 50% 90%, oklch(0.52 0.16 300 / 0.10) 0%, transparent 65%),
+      var(--background);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid oklch(0.78 0.10 305 / 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-card,
+  .animate-glow-pulse { animation: none; }
+}
+
+.animate-float-card { animation-delay: 0s; }
+.animate-float-card:nth-child(2) { animation-delay: -2s; }
+.animate-float-card:nth-child(3) { animation-delay: -4s; }

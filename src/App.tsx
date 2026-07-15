@@ -113,6 +113,13 @@ function Hero() {
               className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-rose/20 to-violet-deep/15 blur-2xl scale-95"
             />
 
+            <img
+              src="/images/photo_2026-06-11_10-13-08.jpg"
+              alt="Автор программы"
+              className="relative rounded-[2rem] border border-border/60 shadow-2xl shadow-violet-deep/10 object-contain w-full max-w-sm"
+              loading="eager"
+            />
+
             <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/60 shadow-2xl shadow-violet-deep/10 p-8 max-w-sm w-full animate-float-card">
               <p className="text-xs uppercase tracking-[0.25em] text-violet-deep font-semibold mb-6">
                 Программа «Проект на автопилоте»

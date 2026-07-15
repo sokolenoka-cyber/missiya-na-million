@@ -35,17 +35,32 @@ export function HowItWorksSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-5">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-xs uppercase tracking-[0.3em] text-violet-deep font-semibold mb-4">
-            Как это работает
-          </p>
-          <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-4">
-            6 недель до автопилота
-          </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Каждая неделя — конкретный блок системы и конкретный результат.
-            Никакой воды, только то, что запускает твой проект.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16">
+          <div className="order-2 lg:order-1">
+            <p className="text-xs uppercase tracking-[0.3em] text-violet-deep font-semibold mb-4">
+              Как это работает
+            </p>
+            <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-4">
+              6 недель до автопилота
+            </h2>
+            <p className="text-muted-foreground max-w-xl leading-relaxed">
+              Каждая неделя — конкретный блок системы и конкретный результат.
+              Никакой воды, только то, что запускает твой проект.
+            </p>
+          </div>
+
+          <div className="order-1 lg:order-2 relative">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-lavender/25 to-rose/15 blur-2xl scale-95"
+            />
+            <img
+              src="/images/photo_2026-06-11_10-13-06.jpg"
+              alt="Погружение в работу над проектом"
+              className="relative rounded-[2rem] border border-border/60 shadow-2xl shadow-violet-deep/10 object-contain w-full"
+              loading="lazy"
+            />
+          </div>
         </div>
 
         <div className="relative">

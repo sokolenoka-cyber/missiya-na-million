@@ -1,14 +1,25 @@
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Quote } from 'lucide-react'
+
+const REVIEWS = [
+  {
+    text: 'Если раньше я была невидимкой, то сейчас без стеснения везде выкладываю свои объявления и откликаюсь на вакансии. Приходят, спрашивают — сейчас 4 человека на этапе переговоров 🔥',
+    author: 'Участница пилотной группы',
+  },
+  {
+    text: 'Слушай, как ты это сделала? 🙌 Можно мини-инструкцию? Пушка-бомба 💣',
+    author: 'Участница пилотной группы',
+  },
+]
 
 const RESULTS = [
-  'Чёткое понимание своей идеи и направления развития',
-  'Упакованная концепция проекта или экспертности',
-  'Позиционирование и уникальное сообщение для аудитории',
-  'План действий на ближайшие 90 дней',
-  'Контент-стратегия и идеи для проявления',
-  'Подобранные ИИ-инструменты под ваш проект',
-  'Снятие основных внутренних ограничений, мешающих действовать',
-  'Первые реальные шаги по запуску проекта',
+  'Упакованная идея, превращённая в понятный проект',
+  'Твой второй мозг на ИИ — система, которая помнит и помогает',
+  'Продающий сайт или лендинг проекта',
+  'Настроенные ИИ-агенты и автоматизация под твои задачи',
+  'Контент-система: осмысленные статьи и прогревы с триггерами продаж',
+  'Автоматизация постинга в нескольких соцсетях',
+  'Маркетинговое исследование ниши и позиционирование',
+  'Дорожная карта запуска на ближайшие 90 дней',
 ]
 
 export function ResultsSection() {
@@ -23,7 +34,7 @@ export function ResultsSection() {
               Результат
             </p>
             <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-8">
-              Что вы получите<br />
+              Что ты получишь<br />
               <span className="text-gradient">через 6 недель</span>
             </h2>
 
@@ -44,19 +55,19 @@ export function ResultsSection() {
               className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-lavender/25 to-rose/15 blur-2xl scale-95"
             />
 
-            <div className="relative grid grid-cols-2 gap-4">
-              <img
-                src="/images/2026-06-11_10-14-26.png"
-                alt="Отзыв участницы"
-                className="relative rounded-2xl border border-border/60 shadow-lg shadow-violet-deep/10 object-contain bg-white w-full"
-                loading="lazy"
-              />
-              <img
-                src="/images/2026-06-11_10-15-08.png"
-                alt="Отзыв участницы"
-                className="relative rounded-2xl border border-border/60 shadow-lg shadow-violet-deep/10 object-contain bg-white w-full"
-                loading="lazy"
-              />
+            <div className="relative grid gap-4">
+              {REVIEWS.map(({ text, author }) => (
+                <div
+                  key={author + text.slice(0, 12)}
+                  className="rounded-2xl bg-card border border-border/60 shadow-lg shadow-violet-deep/10 p-6"
+                >
+                  <Quote className="h-5 w-5 text-violet-deep/60 mb-3" />
+                  <p className="text-foreground leading-relaxed mb-4">{text}</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-semibold">
+                    {author}
+                  </p>
+                </div>
+              ))}
             </div>
 
             <div className="relative rounded-[2rem] bg-card border border-border/60 shadow-card p-8 lg:p-10 animate-float-card">
@@ -65,13 +76,13 @@ export function ResultsSection() {
               </div>
 
               <p className="font-display font-bold text-2xl text-foreground leading-snug mb-6">
-                «Ищу 5 человек, у которых есть идея проекта, блога, практики или продукта,
-                но они не могут начать.»
+                «Ищу 5 человек, у кого есть идея — проекта, блога, практики или продукта —
+                и кто готов запустить её с ИИ, а не откладывать.»
               </p>
 
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Хочу провести пилотную группу и помочь пройти путь от идеи к первым
-                действиям — вместе, в поддерживающем пространстве.
+                Проведу пилотную группу и по шагам помогу пройти путь от идеи до
+                запущенного проекта на автопилоте — вместе, в поддерживающем пространстве.
               </p>
 
               {/* Spots counter */}

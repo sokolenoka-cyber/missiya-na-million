@@ -1,5 +1,7 @@
-import { Sparkles, ArrowRight } from 'lucide-react'
+import { useState } from 'react'
+import { Sparkles, ArrowRight, CheckCircle2, Loader2, Send } from 'lucide-react'
 import { cn } from './lib/utils'
+import { submitLead } from './lib/telegram'
 import { ProblemSection } from './sections/ProblemSection'
 import { ProgramSection } from './sections/ProgramSection'
 import { ResultsSection } from './sections/ResultsSection'
@@ -15,7 +17,7 @@ function Header() {
             <Sparkles className="h-4 w-4 text-white" />
           </div>
           <span className="font-display font-semibold text-sm tracking-tight text-foreground">
-            Миссия на миллион
+            Проект на автопилоте
           </span>
         </div>
 
@@ -31,14 +33,14 @@ function Header() {
 }
 
 const PAIN_POINTS = [
-  'Работаешь много, а денег всё равно не хватает',
-  'Не понимаешь, в чём твоя настоящая ценность',
-  'Боишься поднять цену — вдруг уйдут все клиенты',
+  'Идея и знания есть, но всё лежит в заметках, а не в проекте',
+  'Контент и продажи держатся только на тебе — нет системы',
+  'ИИ используешь хаотично: потоковый текст без смысла и результата',
 ]
 
 const HIGHLIGHTS = [
-  { label: '6 недель', desc: 'от идеи до реального проекта' },
-  { label: '3 уровня', desc: 'мышление · упаковка · реализация' },
+  { label: '6 недель', desc: 'от идеи до запущенного проекта с ИИ-системой' },
+  { label: '3 блока', desc: 'второй мозг · упаковка · автопилот' },
   { label: '5 мест', desc: 'пилотная группа — ограниченный набор' },
 ]
 
@@ -60,18 +62,18 @@ function Hero() {
             </div>
 
             <p className="text-base sm:text-lg text-foreground/80 leading-relaxed max-w-md italic">
-              Если у тебя слишком много дипломов, но заработок и проявленность так и остались в мечтах…
+              Если у тебя есть сильная идея или экспертность, но она застряла в заметках, а руки не доходят её запустить…
             </p>
 
             <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.02] text-foreground">
-              Найди свою{' '}
-              <span className="text-gradient">Миссию<br className="hidden sm:block" /> на миллион</span>
+              Запусти свой проект{' '}
+              <span className="text-gradient">на автопилоте</span>
             </h1>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              Ты чувствуешь, что топчешься на месте: доход не растёт,
-              а дело не приносит радости. На разборе найдём, где застряла
-              твоя энергия — и что с этим делать прямо сейчас.
+              У тебя есть экспертность и идея, но всё держится на тебе:
+              контент, упаковка, продажи. Соберём ИИ-систему — второй мозг,
+              агентов и автоматизацию, — которая запускает и ведёт твой проект.
             </p>
 
             <ul className="flex flex-col gap-2.5">
@@ -111,16 +113,9 @@ function Hero() {
               className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-rose/20 to-violet-deep/15 blur-2xl scale-95"
             />
 
-            <img
-              src="/images/photo_2026-06-11_10-13-08.jpg"
-              alt="Автор программы"
-              className="relative rounded-[2rem] border border-border/60 shadow-2xl shadow-violet-deep/10 object-contain w-full max-w-sm"
-              loading="eager"
-            />
-
             <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/60 shadow-2xl shadow-violet-deep/10 p-8 max-w-sm w-full animate-float-card">
               <p className="text-xs uppercase tracking-[0.25em] text-violet-deep font-semibold mb-6">
-                Программа «От идеи до реализации»
+                Программа «Проект на автопилоте»
               </p>
 
               <div className="flex flex-col gap-5">
@@ -135,7 +130,7 @@ function Hero() {
               </div>
 
               <div className="mt-8 rounded-xl bg-muted/60 border border-border/50 px-4 py-3 text-sm text-muted-foreground leading-relaxed">
-                Работаем сразу: с мышлением, упаковкой и современными ИИ-инструментами.
+                Работаем сразу: второй мозг на ИИ, упаковка идеи и автоматизация контента и продаж.
               </div>
             </div>
           </div>
@@ -147,10 +142,32 @@ function Hero() {
 }
 
 function FormSection() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    alert('Заявка отправлена! Свяжусь с тобой в течение 24 часов.')
+    const form = e.currentTarget
+    const data = new FormData(form)
+
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      await submitLead({
+        name: String(data.get('name') || ''),
+        contact: String(data.get('contact') || ''),
+        about: String(data.get('about') || ''),
+      })
+      setStatus('success')
+      form.reset()
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err instanceof Error ? err.message : 'Не удалось отправить заявку')
+    }
   }
+
+  const isSending = status === 'sending'
 
   return (
     <section id="form" className="py-24 bg-muted/30">
@@ -169,56 +186,116 @@ function FormSection() {
         </div>
 
         <div className="rounded-3xl bg-card border border-border/60 shadow-card p-8">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-foreground" htmlFor="name">
-                Имя
-              </label>
-              <input
-                id="name"
-                type="text"
-                required
-                placeholder="Как тебя зовут?"
-                className="h-12 rounded-xl border border-border/80 bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition"
-              />
+          {status === 'success' ? (
+            <div className="flex flex-col items-center text-center gap-4 py-6">
+              <div className="h-14 w-14 rounded-full bg-rose/20 flex items-center justify-center">
+                <CheckCircle2 className="h-7 w-7 text-violet-deep" />
+              </div>
+              <h3 className="font-display font-bold text-2xl text-foreground">
+                Заявка отправлена!
+              </h3>
+              <p className="text-muted-foreground leading-relaxed max-w-sm">
+                Свяжусь с тобой в течение 24 часов и согласуем удобное время для разбора.
+              </p>
+              <a
+                href="https://t.me/anna_sokol_ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-violet-deep hover:underline"
+              >
+                Или напиши мне сразу — @anna_sokol_ai
+              </a>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-foreground" htmlFor="name">
+                  Имя
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Как тебя зовут?"
+                  className="h-12 rounded-xl border border-border/80 bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition"
+                />
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-foreground" htmlFor="contact">
-                Telegram или телефон
-              </label>
-              <input
-                id="contact"
-                type="text"
-                required
-                placeholder="@username или +7 999..."
-                className="h-12 rounded-xl border border-border/80 bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition"
-              />
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-foreground" htmlFor="contact">
+                  Telegram или телефон
+                </label>
+                <input
+                  id="contact"
+                  name="contact"
+                  type="text"
+                  required
+                  placeholder="@username или +7 999..."
+                  className="h-12 rounded-xl border border-border/80 bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition"
+                />
+              </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-medium text-foreground" htmlFor="about">
-                Кратко о себе и своём деле
-              </label>
-              <textarea
-                id="about"
-                rows={4}
-                placeholder="Чем занимаешься, в чём чувствуешь «затык»..."
-                className="rounded-xl border border-border/80 bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition resize-none"
-              />
-            </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-medium text-foreground" htmlFor="about">
+                  Кратко о себе и своём деле
+                </label>
+                <textarea
+                  id="about"
+                  name="about"
+                  rows={4}
+                  placeholder="Чем занимаешься, какая идея или проект, где сейчас «затык»..."
+                  className="rounded-xl border border-border/80 bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus-visible:ring-2 focus-visible:ring-violet-deep focus-visible:ring-offset-2 transition resize-none"
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="mt-2 w-full rounded-xl h-12 bg-violet-deep hover:bg-violet-deep/90 text-white text-base font-semibold shadow-cta transition-colors"
-            >
-              Записаться на разбор
-            </button>
+              <button
+                type="submit"
+                disabled={isSending}
+                className="mt-2 w-full rounded-xl h-12 bg-violet-deep hover:bg-violet-deep/90 text-white text-base font-semibold shadow-cta transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSending ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Отправляю...
+                  </>
+                ) : (
+                  'Записаться на разбор'
+                )}
+              </button>
 
-            <p className="text-center text-xs text-muted-foreground">
-              Нажимая кнопку, ты соглашаешься с политикой конфиденциальности
-            </p>
-          </form>
+              {status === 'error' && (
+                <p className="text-center text-sm text-destructive">
+                  {errorMsg || 'Не удалось отправить. Попробуй ещё раз или напиши напрямую ниже.'}
+                </p>
+              )}
+
+              <p className="text-center text-xs text-muted-foreground">
+                Нажимая кнопку, ты соглашаешься с{' '}
+                <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="underline hover:text-violet-deep transition-colors">
+                  политикой конфиденциальности
+                </a>
+              </p>
+            </form>
+          )}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <a
+            href="https://t.me/anna_sokol_ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-card px-6 h-11 text-sm font-semibold text-foreground hover:border-violet-deep/50 transition-colors"
+          >
+            <Send className="h-4 w-4 text-violet-deep" />
+            Написать напрямую — @anna_sokol_ai
+          </a>
+          <p className="text-sm text-muted-foreground">
+            Из России удобнее в MAX?{' '}
+            <a href="tel:+79200055132" className="font-semibold text-violet-deep hover:underline">
+              +7 920 005-51-32
+            </a>
+          </p>
         </div>
       </div>
     </section>
@@ -240,8 +317,10 @@ export default function App() {
       </main>
       <footer className="border-t border-border/60 py-8">
         <div className="mx-auto max-w-7xl px-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-          <span>© 2024 Миссия на миллион</span>
-          <span>Политика конфиденциальности</span>
+          <span>© 2026 Проект на автопилоте</span>
+          <a href="/privacy.html" className="hover:text-violet-deep transition-colors">
+            Политика конфиденциальности
+          </a>
         </div>
       </footer>
     </div>

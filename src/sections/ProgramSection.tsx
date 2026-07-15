@@ -3,25 +3,25 @@ import { Brain, Package, Rocket } from 'lucide-react'
 const LEVELS = [
   {
     icon: Brain,
-    label: 'Уровень 1',
-    title: 'Мышление и ограничения',
-    text: 'Работаем с внутренними блоками, страхом проявляться и убеждениями, которые тормозят.',
+    label: 'Блок 1',
+    title: 'Смысл и второй мозг',
+    text: 'Формулируем идею и собираем твою экспертность в ИИ-систему — второй мозг, который помнит всё и работает как ассистент.',
     color: 'from-rose/30 to-rose/10',
     iconBg: 'bg-rose/20',
   },
   {
     icon: Package,
-    label: 'Уровень 2',
-    title: 'Упаковка и позиционирование',
-    text: 'Формулируем идею, находим уникальность, создаём понятное сообщение для вашей аудитории.',
+    label: 'Блок 2',
+    title: 'Упаковка и сайт',
+    text: 'Находим уникальность, собираем оффер и понятное сообщение. Делаем сайт или лендинг, который продаёт.',
     color: 'from-lavender/30 to-lavender/10',
     iconBg: 'bg-lavender/20',
   },
   {
     icon: Rocket,
-    label: 'Уровень 3',
-    title: 'Реализация через ИИ',
-    text: 'Подбираем инструменты ИИ под ваш проект, делаем первые реальные шаги к запуску.',
+    label: 'Блок 3',
+    title: 'Автопилот: контент и продажи',
+    text: 'Настраиваем ИИ-агентов и автоматизацию: осмысленный контент, прогревы и постинг в соцсети — на автопилоте.',
     color: 'from-violet-deep/20 to-violet-deep/5',
     iconBg: 'bg-violet-deep/15',
   },
@@ -37,11 +37,11 @@ export function ProgramSection() {
             Программа
           </p>
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-4">
-            От идеи до реализации
+            От идеи до проекта на автопилоте
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Для экспертов, специалистов, консультантов, авторов проектов и творческих людей,
-            которые чувствуют потенциал для большего, но не могут превратить идею в реальный проект.
+            Для экспертов, специалистов, консультантов и авторов, у кого есть идея
+            или экспертность — но нет системы, чтобы упаковать её в проект и запустить с ИИ.
           </p>
         </div>
 
@@ -50,7 +50,7 @@ export function ProgramSection() {
           <div className="glass rounded-2xl px-8 py-5 text-center max-w-lg">
             <p className="font-display font-bold text-2xl text-foreground mb-1">6 недель</p>
             <p className="text-muted-foreground text-sm">
-              от хаоса в голове до понятной концепции, упаковки и первых шагов реализации
+              от идеи в заметках до запущенного проекта, который ведёт ИИ-система
             </p>
           </div>
         </div>
@@ -80,9 +80,9 @@ export function ProgramSection() {
 
         {/* Bottom note */}
         <p className="text-center text-muted-foreground mt-10 text-sm">
-          Это не просто обучение.{' '}
+          Это не курс по промптам.{' '}
           <span className="text-foreground font-medium">
-            Это пространство, где идея перестаёт быть мечтой и становится реальным проектом.
+            Это система, где твоя идея превращается в проект, а рутину берёт на себя ИИ.
           </span>
         </p>
       </div>

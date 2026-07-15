@@ -16,13 +16,6 @@ export function InviteSection() {
         }}
       />
 
-      {/* Background photo */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-center bg-cover opacity-20"
-        style={{ backgroundImage: 'url(/images/cyberpunk_transformation.png)' }}
-      />
-
       <div className="relative mx-auto max-w-3xl px-5 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.3em] font-semibold mb-8 bg-white/10 text-white/70 border border-white/15">
           <Sparkles className="h-3.5 w-3.5" />
@@ -30,7 +23,7 @@ export function InviteSection() {
         </div>
 
         <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] mb-6">
-          Ваш проект уже<br />
+          Твоя идея готова<br />
           <span
             style={{
               background: 'linear-gradient(135deg, oklch(0.87 0.06 350), oklch(0.78 0.10 305))',
@@ -39,18 +32,17 @@ export function InviteSection() {
               backgroundClip: 'text',
             }}
           >
-            ждёт вас
+            стать проектом
           </span>
         </h2>
 
         <p className="text-white/70 text-lg leading-relaxed mb-4 max-w-xl mx-auto">
-          Ищу 5 человек, у которых есть идея — проекта, блога, практики или продукта,
-          но что-то мешает начать.
+          Ищу 5 человек, у кого есть идея — проекта, блога, практики или продукта, —
+          но всё держится на ручном труде и откладывается.
         </p>
         <p className="text-white/70 leading-relaxed mb-12 max-w-xl mx-auto">
-          Проведу пилотную группу лично: пройдём путь от идеи до первых действий
-          вместе — в поддерживающем пространстве, с ИИ-инструментами и работой
-          с внутренними ограничениями.
+          Проведу пилотную группу лично: по шагам соберём твою ИИ-систему, упакуем
+          идею и запустим проект — с автоматизацией контента, прогревов и продаж.
         </p>
 
         <a

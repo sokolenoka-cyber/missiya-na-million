@@ -1,33 +1,33 @@
 const WEEKS = [
   {
     week: '01',
-    title: 'Ясность и фундамент',
-    text: 'Формулируем идею, находим истинную мотивацию и раскапываем уникальность. Прорабатываем первые внутренние блоки.',
+    title: 'Идея и второй мозг',
+    text: 'Формулируем идею и мотивацию. Собираем твою экспертность в ИИ-систему — второй мозг проекта.',
   },
   {
     week: '02',
-    title: 'Аудитория и ценность',
-    text: 'Определяем, для кого проект, какую боль решает и в чём ваша уникальная ценность для этих людей.',
+    title: 'Аудитория и маркетинг-исследование',
+    text: 'Определяем, для кого проект и какую боль он решает. Через ИИ проводим маркетинговое исследование ниши и конкурентов.',
   },
   {
     week: '03',
-    title: 'Упаковка концепции',
-    text: 'Создаём позиционирование, уникальное сообщение и понятную концепцию, которую легко объяснить.',
+    title: 'Упаковка и сайт',
+    text: 'Собираем позиционирование, оффер и продающий сайт или лендинг — быстро, с помощью ИИ.',
   },
   {
     week: '04',
-    title: 'ИИ-инструменты в работе',
-    text: 'Подбираем и осваиваем конкретные ИИ-инструменты под ваш проект. Ускоряем то, что раньше занимало дни.',
+    title: 'ИИ-агенты и автоматизация',
+    text: 'Настраиваем агентов и автоматизацию под твой проект: то, что занимало дни, начинает работать само.',
   },
   {
     week: '05',
-    title: 'Контент и проявление',
-    text: 'Разрабатываем контент-стратегию, снимаем страх высказываться и делаем первые публичные шаги.',
+    title: 'Контент и прогревы на автопилоте',
+    text: 'Строим контент-систему: осмысленные статьи и прогревы с триггерами продаж и вирусными схемами, автопостинг в соцсети.',
   },
   {
     week: '06',
     title: 'Запуск и план на 90 дней',
-    text: 'Фиксируем результаты, выстраиваем дорожную карту на три месяца вперёд. Выходим в реальность.',
+    text: 'Запускаем проект в мир, фиксируем результаты и собираем дорожную карту на три месяца вперёд.',
   },
 ]
 
@@ -35,32 +35,17 @@ export function HowItWorksSection() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-5">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-16">
-          <div className="order-2 lg:order-1">
-            <p className="text-xs uppercase tracking-[0.3em] text-violet-deep font-semibold mb-4">
-              Как это работает
-            </p>
-            <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-4">
-              6 недель погружения
-            </h2>
-            <p className="text-muted-foreground max-w-xl leading-relaxed">
-              Каждая неделя — конкретная задача, конкретный результат.
-              Никакой воды, только движение к вашему проекту.
-            </p>
-          </div>
-
-          <div className="order-1 lg:order-2 relative">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-lavender/25 to-rose/15 blur-2xl scale-95"
-            />
-            <img
-              src="/images/photo_2026-06-11_10-13-06.jpg"
-              alt="Погружение в работу над проектом"
-              className="relative rounded-[2rem] border border-border/60 shadow-2xl shadow-violet-deep/10 object-contain w-full"
-              loading="lazy"
-            />
-          </div>
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <p className="text-xs uppercase tracking-[0.3em] text-violet-deep font-semibold mb-4">
+            Как это работает
+          </p>
+          <h2 className="font-display font-bold text-4xl sm:text-5xl text-foreground mb-4">
+            6 недель до автопилота
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Каждая неделя — конкретный блок системы и конкретный результат.
+            Никакой воды, только то, что запускает твой проект.
+          </p>
         </div>
 
         <div className="relative">

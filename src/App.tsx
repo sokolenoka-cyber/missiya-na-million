@@ -119,7 +119,7 @@ function Hero() {
               </div>
 
               <div className="mt-8 rounded-xl bg-muted/60 border border-border/50 px-4 py-3 text-sm text-muted-foreground leading-relaxed">
-                Работаем сразу: второй мозг на ИИ, упаковка идеи и автоматизация контента и продаж.
+                Без кода и технических навыков — с ИИ разберёшься, даже если сейчас он пугает.
               </div>
             </div>
           </div>

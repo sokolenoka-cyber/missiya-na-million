@@ -32,12 +32,6 @@ function Header() {
   )
 }
 
-const PAIN_POINTS = [
-  'Идея и знания есть, но всё лежит в заметках, а не в проекте',
-  'Контент и продажи держатся только на тебе — нет системы',
-  'ИИ используешь хаотично: потоковый текст без смысла и результата',
-]
-
 const HIGHLIGHTS = [
   { label: '6 недель', desc: 'от идеи до запущенного проекта с ИИ-системой' },
   { label: '3 блока', desc: 'второй мозг · упаковка · автопилот' },
@@ -71,21 +65,9 @@ function Hero() {
             </h1>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              У тебя есть экспертность и идея, но всё держится на тебе:
-              контент, упаковка, продажи. Соберём ИИ-систему — второй мозг,
-              агентов и автоматизацию, — которая запускает и ведёт твой проект.
+              За 6 недель твоя идея превратится в запущенный проект — а рутину
+              вроде контента, прогревов и продаж возьмёт на себя ИИ.
             </p>
-
-            <ul className="flex flex-col gap-2.5">
-              {PAIN_POINTS.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="mt-[3px] h-4 w-4 flex-shrink-0 rounded-full bg-rose/30 flex items-center justify-center">
-                    <span className="h-1.5 w-1.5 rounded-full bg-violet-deep" />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
               <a

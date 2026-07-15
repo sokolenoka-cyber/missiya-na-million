@@ -16,6 +16,13 @@ export function InviteSection() {
         }}
       />
 
+      {/* Background photo */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-center bg-cover opacity-20"
+        style={{ backgroundImage: 'url(/images/cyberpunk_transformation.png)' }}
+      />
+
       <div className="relative mx-auto max-w-3xl px-5 text-center">
         <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.3em] font-semibold mb-8 bg-white/10 text-white/70 border border-white/15">
           <Sparkles className="h-3.5 w-3.5" />
